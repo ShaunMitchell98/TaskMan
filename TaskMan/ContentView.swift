@@ -12,18 +12,18 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \TaskItem.title, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var tasks: FetchedResults<TaskItem>
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
+                ForEach(tasks) { task in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text("Task at \(task.title!)")
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text(task.title!)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -46,8 +46,8 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newTask = TaskItem(context: viewContext)
+            newTask.title = "Temp"
 
             do {
                 try viewContext.save()
@@ -62,7 +62,7 @@ struct ContentView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { tasks[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -76,12 +76,6 @@ struct ContentView: View {
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
