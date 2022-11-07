@@ -17,7 +17,7 @@ internal class CreateHandler {
         self.context = context;
     }
     
-    internal func Handle() {
+    internal func Handle() -> TaskItem? {
         
         let taskItem = NSEntityDescription.insertNewObject(forEntityName: "TaskItem", into: context) as! TaskItem
         
@@ -25,6 +25,7 @@ internal class CreateHandler {
 
         do {
            try context.save()
+            return taskItem
         } catch {
             // Replace this implementation with code to handle the error appropriately.
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
