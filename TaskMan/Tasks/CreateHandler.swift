@@ -19,9 +19,9 @@ internal class CreateHandler {
     
     internal func Handle() {
         
-        let taskItem = NSEntityDescription.insertNewObject(forEntityName: "Task", into: context) as! TaskItem
+        let taskItem = NSEntityDescription.insertNewObject(forEntityName: "TaskItem", into: context) as! TaskItem
         
-        taskItem.title = "Temp"
+        taskItem.name = "Temp"
 
         do {
            try context.save()

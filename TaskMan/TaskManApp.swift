@@ -13,7 +13,7 @@ struct TaskManApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(createHandler: CreateHandler(context: persistenceController.container.viewContext))
+            ContentView(viewModel: ListModel(createHandler: CreateHandler(context: persistenceController.container.viewContext)))
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

@@ -10,21 +10,16 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-        private var tasks : [TaskItem] = []
-        private var createHandler : CreateHandler
-    
-    public init(createHandler: CreateHandler) {
-        self.createHandler = createHandler
-    }
+    @ObservedObject var viewModel : ListModel
 
     var body: some View {
         NavigationStack {
             List {
-                ForEach(tasks) { task in
+                ForEach(viewModel.tasks) { task in
                     NavigationLink {
-                        Text("Task at \(task.title)")
+                        Text("Task at \(task.name!)")
                     } label: {
-                        Text(task.title)
+                        Text(task.name!)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -47,13 +42,13 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            createHandler.Handle()
+            viewModel.create()
         }
     }
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { tasks[$0] }.forEach(viewContext.delete)
+            offsets.map { viewModel.tasks[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -70,6 +65,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(createHandler: CreateHandler(context: PersistenceController.preview.container.viewContext)).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView(viewModel: ListModel(createHandler: CreateHandler(context: PersistenceController.preview.container.viewContext))).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
