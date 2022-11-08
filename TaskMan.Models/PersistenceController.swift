@@ -11,7 +11,7 @@ struct PersistenceController {
     static let shared = PersistenceController()
 
     static var preview: PersistenceController = {
-        let result = PersistenceController(inMemory: true)
+        let result = PersistenceController(inMemory: false)
         let viewContext = result.container.viewContext
         do {
             try viewContext.save()
@@ -30,6 +30,17 @@ struct PersistenceController {
         container = NSPersistentContainer(name: "TaskMan")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        }
+        else {
+            do {
+                let coordinator = container.persistentStoreCoordinator
+                try _ = coordinator.addPersistentStore(type:NSPersistentStore.StoreType.sqlite,
+                                                   at:URL(fileURLWithPath: "/Users/shaunmitchell/TaskManData/Data.sqlite"))
+            }
+                catch {
+                    let nsError = error as NSError
+                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                }
         }
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
