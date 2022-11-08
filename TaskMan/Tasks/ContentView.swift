@@ -50,7 +50,7 @@ struct ContentView: View {
         withAnimation {
             offsets.map { viewModel.tasks[$0] }.forEach(viewContext.delete)
 
-            viewModel.delete()
+            viewModel.delete(offsets: offsets)
         }
     }
 }

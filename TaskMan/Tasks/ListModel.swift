@@ -19,11 +19,17 @@ public class ListModel : ObservableObject {
     }
     
     func create() {
-        let task = createHandler.Handle()
+        let task = createHandler.Handle(index: tasks.count + 1)
         tasks.append(task!)
     }
     
-    func delete() {
-        deleteHandler.Handle()
+    func delete(offsets: IndexSet) {
+        
+        for index in offsets {
+            let task = tasks[index]
+            deleteHandler.Handle(taskItem: task)
+        }
+
+        tasks.remove(atOffsets: offsets)
     }
 }
