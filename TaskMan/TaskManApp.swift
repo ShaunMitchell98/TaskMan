@@ -14,7 +14,9 @@ struct TaskManApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(viewModel: ListModel(createHandler: CreateHandler(context: persistenceController.container.viewContext),
-                        deleteHandler: DeleteHandler(context: persistenceController.container.viewContext)))
+                        deleteHandler: DeleteHandler(context: persistenceController.container.viewContext),
+                                             listQueryHandler: ListQueryHandler(context:
+                                                                                        persistenceController.container.viewContext)))
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

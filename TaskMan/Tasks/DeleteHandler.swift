@@ -16,8 +16,10 @@ internal class DeleteHandler {
         self.context = context
     }
     
-    func Handle(taskItem: TaskItem) {
-        context.delete(taskItem)
+    func Handle(command: DeleteCommand) {
+        
+        //context.
+        //context.delete(taskItem)
         
         do {
            try context.save()

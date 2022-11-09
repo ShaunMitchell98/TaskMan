@@ -48,7 +48,7 @@ struct ContentView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { viewModel.tasks[$0] }.forEach(viewContext.delete)
+            //offsets.map { viewModel.tasks[$0] //}.forEach(viewContext.delete)
 
             viewModel.delete(offsets: offsets)
         }
@@ -59,6 +59,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(viewModel: ListModel(createHandler: CreateHandler(context: PersistenceController.preview.container.viewContext),
-                    deleteHandler: DeleteHandler(context: PersistenceController.preview.container.viewContext))).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                    deleteHandler: DeleteHandler(context: PersistenceController.preview.container.viewContext),
+                                         listQueryHandler: ListQueryHandler(context: PersistenceController.preview.container.viewContext))).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
