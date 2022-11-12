@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-internal class CreateHandler {
+internal class CreateModelHandler {
     
     let context : TaskManContext;
     

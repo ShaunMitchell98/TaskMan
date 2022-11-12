@@ -12,9 +12,9 @@ import SwinjectAutoregistration
 internal class TasksAssembly : Assembly {
     
     internal func assemble(container: Container) {
-        container.autoregister(CreateHandler.self, initializer: CreateHandler.init)
+        container.autoregister(CreateModelHandler.self, initializer: CreateModelHandler.init)
         
-        container.autoregister(DeleteHandler.self, initializer: DeleteHandler.init)
+        container.autoregister(DeleteCommandHandler.self, initializer: DeleteCommandHandler.init)
         
         container.autoregister(ListQueryHandler.self, initializer: ListQueryHandler.init)
         

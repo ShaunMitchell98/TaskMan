@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct ListView: View {
     @ObservedObject var viewModel : ListModel
 
     var body: some View {
@@ -57,6 +57,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         
         let assembler = AssemblerBuilder().Build()
-        ContentView(viewModel: assembler.resolver.resolve(ListModel.self)!)
+        ListView(viewModel: assembler.resolver.resolve(ListModel.self)!)
     }
 }

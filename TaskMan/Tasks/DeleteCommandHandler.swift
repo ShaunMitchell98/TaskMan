@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-internal class DeleteHandler {
+internal class DeleteCommandHandler {
     
     private let context: TaskManContext
     

@@ -9,19 +9,19 @@ import Foundation
 
 public class ListModel : ObservableObject {
     @Published var tasks : [ListItemModel]
-    private let createHandler: CreateHandler
-    private let deleteHandler: DeleteHandler
+    private let createModelHandler: CreateModelHandler
+    private let deleteCommandHandler: DeleteCommandHandler
     
-    init(createHandler: CreateHandler, deleteHandler: DeleteHandler, listQueryHandler: ListQueryHandler) {
+    init(createModelHandler: CreateModelHandler, deleteCommandHandler: DeleteCommandHandler, listQueryHandler: ListQueryHandler) {
         let query = ListQuery()
         tasks = listQueryHandler.Handle(request: query)
-        self.createHandler = createHandler
-        self.deleteHandler = deleteHandler
+        self.createModelHandler = createModelHandler
+        self.deleteCommandHandler = deleteCommandHandler
     }
     
     func create() {
         let model = CreateModel(index: tasks.count + 1)
-        let task = createHandler.Handle(request: model)
+        let task = createModelHandler.Handle(request: model)
         
         if (task == nil) {
             return
@@ -34,7 +34,7 @@ public class ListModel : ObservableObject {
         
         for index in offsets {
             let task = tasks[index]
-            deleteHandler.Handle(command: DeleteCommand(id: task.id))
+            deleteCommandHandler.Handle(command: DeleteCommand(id: task.id))
         }
 
         tasks.remove(atOffsets: offsets)

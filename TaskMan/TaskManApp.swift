@@ -14,7 +14,7 @@ struct TaskManApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: assembler.resolver.resolve(ListModel.self)!)
+            ListView(viewModel: assembler.resolver.resolve(ListModel.self)!)
         }
     }
 }
