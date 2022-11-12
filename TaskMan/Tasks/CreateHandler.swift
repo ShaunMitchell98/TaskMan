@@ -17,11 +17,11 @@ internal class CreateHandler {
         self.context = context;
     }
     
-    internal func Handle(index: Int) -> TaskItem? {
+    internal func Handle(request: CreateModel) -> TaskItem? {
         
         let taskItem = NSEntityDescription.insertNewObject(forEntityName: "TaskItem", into: context) as! TaskItem
         
-        taskItem.name = "Temp \(index)"
+        taskItem.name = "Temp \(request.index)"
         context.saveChanges()
         return taskItem
     }

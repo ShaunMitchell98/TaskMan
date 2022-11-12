@@ -20,7 +20,8 @@ public class ListModel : ObservableObject {
     }
     
     func create() {
-        let task = createHandler.Handle(index: tasks.count + 1)
+        let model = CreateModel(index: tasks.count + 1)
+        let task = createHandler.Handle(request: model)
         
         if (task == nil) {
             return

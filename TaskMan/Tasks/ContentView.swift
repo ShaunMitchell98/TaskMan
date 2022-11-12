@@ -9,7 +9,6 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var viewModel : ListModel
 
     var body: some View {
@@ -48,8 +47,6 @@ struct ContentView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            //offsets.map { viewModel.tasks[$0] //}.forEach(viewContext.delete)
-
             viewModel.delete(offsets: offsets)
         }
     }
