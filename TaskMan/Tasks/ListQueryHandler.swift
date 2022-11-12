@@ -22,6 +22,6 @@ internal class ListQueryHandler {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskItem")
         let results = context.fetchResults(request: fetchRequest)
         let taskItems = results as! [TaskItem]
-        return taskItems.map { return ListItemModel(name: $0.name) }
+        return taskItems.map { return ListItemModel(id: $0.objectID, name: $0.name) }
     }
 }

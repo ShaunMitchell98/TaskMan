@@ -5,13 +5,17 @@
 //  Created by Shaun Mitchell on 09/11/2022.
 //
 
+import CoreData
 import Foundation
 
 internal class ListItemModel : Identifiable {
     
-    init(name: String?) {
+    init(id: NSManagedObjectID, name: String?) {
+        self.id  = id
         self.name = name
     }
+    
+    let id: NSManagedObjectID
     
     let name: String?
 }
