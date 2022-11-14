@@ -18,6 +18,8 @@ internal class TasksAssembly : Assembly {
         
         container.autoregister(ListQueryHandler.self, initializer: ListQueryHandler.init)
         
-        container.autoregister(ListModel.self, initializer: ListModel.init)
+        container.autoregister(ListViewModel.self, initializer: ListViewModel.init)
+        
+        container.autoregister(EditViewModel.self, initializer: EditViewModel.init)
     }
 }

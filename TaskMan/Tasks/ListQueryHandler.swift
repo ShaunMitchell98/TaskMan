@@ -17,11 +17,10 @@ internal class ListQueryHandler {
         self.context = context;
     }
     
-    internal func Handle(request: ListQuery) -> [ListItemModel] {
+    internal func Handle(request: ListQuery) -> [TaskItem] {
             
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskItem")
         let results = context.fetchResults(request: fetchRequest)
-        let taskItems = results as! [TaskItem]
-        return taskItems.map { return ListItemModel(id: $0.objectID, name: $0.name) }
+        return results as! [TaskItem]
     }
 }

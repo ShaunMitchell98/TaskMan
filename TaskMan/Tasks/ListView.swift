@@ -9,15 +9,18 @@ import SwiftUI
 import CoreData
 
 struct ListView: View {
-    @ObservedObject var viewModel : ListModel
+    @State var tasks: [TaskItem]
+    @Injected var viewModel : ListViewModel
 
     var body: some View {
+        
         NavigationStack {
             List {
-                ForEach(viewModel.tasks) { task in
+                ForEach(tasks) { task in
                     NavigationLink {
-                        Text("Task at \(task.name!)")
-                    } label: {
+                        EditView(task: task)
+                    }
+                    label: {
                         Text(task.name!)
                     }
                 }
@@ -35,19 +38,27 @@ struct ListView: View {
                     }
                 }
             }
-            Text("Select an item")
         }
     }
 
     private func addItem() {
         withAnimation {
-            viewModel.create()
+            let task = viewModel.create(count: tasks.count)
+            
+            if task != nil {
+                tasks.append(task!)
+            }
         }
     }
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            viewModel.delete(offsets: offsets)
+            
+            for offset in offsets {
+                viewModel.delete(task: tasks[offset])
+            }
+            
+            tasks.remove(atOffsets: offsets)
         }
     }
 }
@@ -57,6 +68,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         
         let assembler = AssemblerBuilder().Build()
-        ListView(viewModel: assembler.resolver.resolve(ListModel.self)!)
+        assembler.resolver.resolve(ListView.self)
     }
 }

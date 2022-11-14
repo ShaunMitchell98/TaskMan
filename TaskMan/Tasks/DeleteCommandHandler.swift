@@ -16,17 +16,9 @@ internal class DeleteCommandHandler {
         self.context = context
     }
     
-    func Handle(command: DeleteCommand) {
+    func Handle(task: TaskItem) {
         
-        do {
-            let task = try context.existingObject(with: command.id)
-            context.delete(task)
-            context.saveChanges()
-        }
-        catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-
+        context.delete(task)
+        context.saveChanges()
     }
 }

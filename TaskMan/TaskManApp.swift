@@ -14,7 +14,9 @@ struct TaskManApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ListView(viewModel: assembler.resolver.resolve(ListModel.self)!)
+            let listQueryHandler = assembler.resolver.resolve(ListQueryHandler.self)!
+            let tasks = listQueryHandler.Handle(request: ListQuery())
+            ListView(tasks: tasks)
         }
     }
 }
