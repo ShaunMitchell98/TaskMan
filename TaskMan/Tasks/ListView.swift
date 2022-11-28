@@ -10,21 +10,20 @@ import CoreData
 
 struct ListView: View {
     @State var tasks: [TaskItem]
+    @State private var navigationStack: [Int] = []
     @Injected var viewModel : ListViewModel
 
     var body: some View {
         
-        NavigationStack {
+        NavigationStack(path: $navigationStack) {
             List {
-                ForEach(tasks) { task in
-                    NavigationLink {
-                        EditView(task: task)
-                    }
-                    label: {
-                        Text(task.name!)
-                    }
+                ForEach(tasks.indices, id: \.self) { index in
+                    NavigationLink(tasks[index].name!, value: index)
                 }
                 .onDelete(perform: deleteItems)
+            }
+            .navigationDestination(for: Int.self) { index in
+                EditView(task: $tasks[index], navigationStack: $navigationStack)
             }
             .toolbar {
 #if os(iOS)

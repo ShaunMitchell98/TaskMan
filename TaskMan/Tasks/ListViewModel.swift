@@ -30,6 +30,5 @@ internal class ListViewModel {
         
         deleteCommandHandler.Handle(task: task)
         
-      
     }
 }

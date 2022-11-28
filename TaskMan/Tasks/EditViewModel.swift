@@ -10,4 +10,14 @@ import Foundation
 
 internal class EditViewModel {
 
+    private let editHandler: EditHandler
+    
+    init(editHandler: EditHandler) {
+        self.editHandler = editHandler
+    }
+    
+    func edit(task: TaskItem) {
+        
+        editHandler.Handle(request: task)
+    }
 }

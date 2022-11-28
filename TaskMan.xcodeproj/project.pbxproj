@@ -17,6 +17,7 @@
 		6D2907F32916848800B5432C /* TaskManTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2907F22916848800B5432C /* TaskManTests.swift */; };
 		6D2907FD2916848800B5432C /* TaskManUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2907FC2916848800B5432C /* TaskManUITests.swift */; };
 		6D2907FF2916848800B5432C /* TaskManUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2907FE2916848800B5432C /* TaskManUITestsLaunchTests.swift */; };
+		6D70CCAF292299530001EB8C /* EditHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D70CCAE292299530001EB8C /* EditHandler.swift */; };
 		6D742185291DB74B001F8A1C /* TasksAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D742184291DB74B001F8A1C /* TasksAssembly.swift */; };
 		6D742188291DB8A9001F8A1C /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = 6D742187291DB8A9001F8A1C /* SwinjectAutoregistration */; };
 		6D74218A291DB9D7001F8A1C /* AssemblerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D742189291DB9D7001F8A1C /* AssemblerBuilder.swift */; };
@@ -31,6 +32,9 @@
 		6D7C4CA9291C5C9400F7D664 /* ListItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C4CA8291C5C9400F7D664 /* ListItemModel.swift */; };
 		6D7C4CAB291C626300F7D664 /* DeleteCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7C4CAA291C626300F7D664 /* DeleteCommand.swift */; };
 		6D7C4CAE291C6A5D00F7D664 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7C4CAD291C6A5D00F7D664 /* Swinject */; };
+		6DAA57BD292398CB007906AC /* EditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA57BC292398CB007906AC /* EditModel.swift */; };
+		6DAA57BF292398E9007906AC /* EditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA57BE292398E9007906AC /* EditQuery.swift */; };
+		6DAA57C32923AE28007906AC /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA57C22923AE28007906AC /* NavigationModel.swift */; };
 		6DC5602929201D5000F14C5E /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC5602829201D5000F14C5E /* Injected.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +70,7 @@
 		6D2907F82916848800B5432C /* TaskManUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskManUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2907FC2916848800B5432C /* TaskManUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManUITests.swift; sourceTree = "<group>"; };
 		6D2907FE2916848800B5432C /* TaskManUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6D70CCAE292299530001EB8C /* EditHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHandler.swift; sourceTree = "<group>"; };
 		6D742184291DB74B001F8A1C /* TasksAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksAssembly.swift; sourceTree = "<group>"; };
 		6D742189291DB9D7001F8A1C /* AssemblerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblerBuilder.swift; sourceTree = "<group>"; };
 		6D74218B291DBBE1001F8A1C /* DataAccessAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccessAssembly.swift; sourceTree = "<group>"; };
@@ -78,6 +83,9 @@
 		6D7C4CA6291C5C5400F7D664 /* ListQueryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListQueryHandler.swift; sourceTree = "<group>"; };
 		6D7C4CA8291C5C9400F7D664 /* ListItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemModel.swift; sourceTree = "<group>"; };
 		6D7C4CAA291C626300F7D664 /* DeleteCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommand.swift; sourceTree = "<group>"; };
+		6DAA57BC292398CB007906AC /* EditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModel.swift; sourceTree = "<group>"; };
+		6DAA57BE292398E9007906AC /* EditQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuery.swift; sourceTree = "<group>"; };
+		6DAA57C22923AE28007906AC /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
 		6DC5602829201D5000F14C5E /* Injected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +157,7 @@
 				6D2907DB2916848600B5432C /* TaskManApp.swift */,
 				6D76195F291811DB008C354C /* Tasks */,
 				6DC5602829201D5000F14C5E /* Injected.swift */,
+				6DAA57C22923AE28007906AC /* NavigationModel.swift */,
 			);
 			path = TaskMan;
 			sourceTree = "<group>";
@@ -193,6 +202,9 @@
 				6D2907E22916848600B5432C /* ListView.swift */,
 				6D044FE62919CA0C0059C32B /* ListViewModel.swift */,
 				6D742184291DB74B001F8A1C /* TasksAssembly.swift */,
+				6D70CCAE292299530001EB8C /* EditHandler.swift */,
+				6DAA57BC292398CB007906AC /* EditModel.swift */,
+				6DAA57BE292398E9007906AC /* EditQuery.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -342,13 +354,17 @@
 				6D742185291DB74B001F8A1C /* TasksAssembly.swift in Sources */,
 				6D044FE72919CA0C0059C32B /* ListViewModel.swift in Sources */,
 				6D74218E291DC0DB001F8A1C /* TaskManContext.swift in Sources */,
+				6DAA57BF292398E9007906AC /* EditQuery.swift in Sources */,
 				6D7C4CAB291C626300F7D664 /* DeleteCommand.swift in Sources */,
 				6D2907E32916848600B5432C /* ListView.swift in Sources */,
 				6D775A8A291FAFA70035EDCD /* CreateModel.swift in Sources */,
 				6D7C4CA9291C5C9400F7D664 /* ListItemModel.swift in Sources */,
+				6D70CCAF292299530001EB8C /* EditHandler.swift in Sources */,
 				6D775A8C291FB2BB0035EDCD /* EditView.swift in Sources */,
+				6DAA57BD292398CB007906AC /* EditModel.swift in Sources */,
 				6D7C4CA5291C5C2900F7D664 /* ListQuery.swift in Sources */,
 				6D7C4CA7291C5C5400F7D664 /* ListQueryHandler.swift in Sources */,
+				6DAA57C32923AE28007906AC /* NavigationModel.swift in Sources */,
 				6D74218C291DBBE1001F8A1C /* DataAccessAssembly.swift in Sources */,
 				6D044FDF2919B7060059C32B /* TaskMan.xcdatamodeld in Sources */,
 				6D775A8E291FB3290035EDCD /* EditViewModel.swift in Sources */,

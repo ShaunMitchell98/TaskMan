@@ -9,11 +9,30 @@ import CoreData
 import SwiftUI
 
 struct EditView: View {
-    @State var task: TaskItem
+    @Binding var task: TaskItem
+    @Binding var navigationStack: [Int]
     @Injected var viewModel : EditViewModel
     
     var body: some View {
-        Text(task.name ?? "Nothing")
+        
+        List {
+            HStack {
+                Text("Name").bold()
+                Divider()
+                TextField("Name", text: Binding($task.name) ?? .constant(""))
+            }
+        }
+        .toolbar {
+            
+            ToolbarItem {
+                Button("Done", action: Save)
+            }
+        }
+    }
+                    
+    private func Save() {
+        viewModel.edit(task: task)
+        navigationStack.removeAll()
     }
 }
 
