@@ -16,7 +16,9 @@ struct TaskManApp: App {
         WindowGroup {
             let listQueryHandler = assembler.resolver.resolve(ListQueryHandler.self)!
             let tasks = listQueryHandler.Handle(request: ListQuery())
+            let assemblerContainer = AssemblerContainer(assembler: assembler)
             ListView(tasks: tasks)
+                .environment(\.assemblerContainer, assemblerContainer)
         }
     }
 }

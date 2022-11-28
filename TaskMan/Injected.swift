@@ -6,21 +6,15 @@
 //
 
 import Foundation
-import Swinject
 import SwiftUI
 
 @propertyWrapper
-internal struct Injected<TService> {
+internal struct Injected<TService> : DynamicProperty {
     
-    private var service: TService
-    
-    public init () {
-        let assembler = AssemblerBuilder().Build()
-        service = assembler.resolver.resolve(TService.self)!
-    }
+    @Environment(\.assemblerContainer) private var assemblerContainer: AssemblerContainer?
     
     public var wrappedValue: TService {
         
-        get { return service }
+        get { return assemblerContainer!.assembler.resolver.resolve(TService.self)! }
     }
 }

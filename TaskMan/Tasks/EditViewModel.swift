@@ -17,7 +17,6 @@ internal class EditViewModel {
     }
     
     func edit(task: TaskItem) {
-        
         editHandler.Handle(request: task)
     }
 }

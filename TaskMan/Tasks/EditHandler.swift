@@ -18,7 +18,6 @@ internal class EditHandler {
     
     internal func Handle(request: TaskItem) {
         
-        let task = request.name
         context.saveChanges()
     }
 }
