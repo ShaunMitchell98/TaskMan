@@ -20,7 +20,6 @@ internal class EditHandler {
         
         await context.perform {
             self.context.saveChanges()
-            self.context.refreshAllObjects()
         }
     }
 }
