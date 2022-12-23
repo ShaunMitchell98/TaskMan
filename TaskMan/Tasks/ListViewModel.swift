@@ -5,30 +5,39 @@
 //  Created by Shaun Mitchell on 07/11/2022.
 //
 
-import CoreData
 import Foundation
+import SwiftUI
 
 internal class ListViewModel {
         
+    private let listQueryHandler: ListQueryHandler
     private let createModelHandler: CreateModelHandler
     private let deleteCommandHandler: DeleteCommandHandler
     
-    init(createModelHandler: CreateModelHandler, deleteCommandHandler: DeleteCommandHandler) {
+    init(listQueryHandler: ListQueryHandler,
+         createModelHandler: CreateModelHandler, deleteCommandHandler: DeleteCommandHandler) {
         
+        self.listQueryHandler = listQueryHandler
         self.createModelHandler = createModelHandler
         self.deleteCommandHandler = deleteCommandHandler
     }
     
-    func create(count: Int) -> TaskItem?  {
+    func listAsync() async -> [TaskItem] {
+        return await listQueryHandler.Handle(request: ListQuery())
+    }
+    
+    func createAsync(count: Int) async -> TaskItem?  {
         let model = CreateModel(index: count + 1)
-        let task = createModelHandler.Handle(request: model)
+        let task = await createModelHandler.Handle(request: model)
         
         return task
     }
     
-    func delete(task: TaskItem) {
+    @MainActor
+    func deleteAsync(task: TaskItem) async {
         
-        deleteCommandHandler.Handle(task: task)
+        await deleteCommandHandler.Handle(task: task)
         
     }
 }
+

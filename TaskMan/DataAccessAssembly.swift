@@ -21,7 +21,7 @@ internal class DataAccessAssembly : Assembly {
             context.persistentStoreCoordinator = coordinator
             
             do {
-                try _ = coordinator.addPersistentStore(type:NSPersistentStore.StoreType.sqlite,
+                try _ = coordinator.addPersistentStore(type:.sqlite,
                                                at:URL(fileURLWithPath: "/Users/shaunmitchell/TaskManData/Data.sqlite"))
             }
             catch {

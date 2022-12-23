@@ -23,5 +23,7 @@ internal class TasksAssembly : Assembly {
         container.autoregister(EditViewModel.self, initializer: EditViewModel.init)
         
         container.autoregister(EditHandler.self, initializer: EditHandler.init)
+        
+        container.autoregister(UndoHandler.self, initializer: UndoHandler.init)
     }
 }

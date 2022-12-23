@@ -11,12 +11,18 @@ import Foundation
 internal class EditViewModel {
 
     private let editHandler: EditHandler
+    private let undoHandler: UndoHandler
     
-    init(editHandler: EditHandler) {
+    init(editHandler: EditHandler, undoHandler: UndoHandler) {
         self.editHandler = editHandler
+        self.undoHandler = undoHandler
     }
     
-    func edit(task: TaskItem) {
-        editHandler.Handle(request: task)
+    func editAsync(task: TaskItem) async {
+        await editHandler.Handle(request: task)
+    }
+    
+    func undo() {
+        undoHandler.Handle()
     }
 }

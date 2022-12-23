@@ -16,8 +16,11 @@ internal class EditHandler {
         self.context = context;
     }
     
-    internal func Handle(request: TaskItem) {
+    internal func Handle(request: TaskItem) async {
         
-        context.saveChanges()
+        await context.perform {
+            self.context.saveChanges()
+            self.context.refreshAllObjects()
+        }
     }
 }

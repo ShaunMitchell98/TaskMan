@@ -10,17 +10,19 @@ import Foundation
 
 internal class ListQueryHandler {
     
-    let context : TaskManContext;
+    private let context : TaskManContext;
     
     internal init(context : TaskManContext)
     {
         self.context = context;
     }
     
-    internal func Handle(request: ListQuery) -> [TaskItem] {
+    internal func Handle(request: ListQuery) async -> [TaskItem] {
             
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskItem")
-        let results = context.fetchResults(request: fetchRequest)
-        return results as! [TaskItem]
+        return await context.perform {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskItem")
+            let results = self.context.fetchResults(request: fetchRequest)
+            return results as! [TaskItem]
+        }
     }
 }

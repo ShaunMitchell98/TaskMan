@@ -17,12 +17,14 @@ internal class CreateModelHandler {
         self.context = context;
     }
     
-    internal func Handle(request: CreateModel) -> TaskItem? {
+    internal func Handle(request: CreateModel) async -> TaskItem? {
         
-        let taskItem = NSEntityDescription.insertNewObject(forEntityName: "TaskItem", into: context) as! TaskItem
-        
-        taskItem.name = "Temp \(request.index)"
-        context.saveChanges()
-        return taskItem
+        return await context.perform {
+            let taskItem = NSEntityDescription.insertNewObject(forEntityName: "TaskItem", into: self.context) as! TaskItem
+            
+            taskItem.name = "Temp \(request.index)"
+            self.context.saveChanges()
+            return taskItem
+        }
     }
 }

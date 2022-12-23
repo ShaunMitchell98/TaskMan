@@ -9,9 +9,10 @@ import CoreData
 import SwiftUI
 
 struct EditView: View {
-    @Binding var task: TaskItem
+    @State var task: TaskItem
     @Binding var navigationStack: [Int]
     @Injected var viewModel : EditViewModel
+    @Environment(\.isPresented) var isPresented
     
     var body: some View {
         
@@ -22,16 +23,21 @@ struct EditView: View {
                 TextField("Name", text: Binding($task.name) ?? .constant(""))
             }
         }
+        .onChange(of: isPresented) { newValue in
+                    if !newValue {
+                        viewModel.undo()
+                    }
+                }
         .toolbar {
             
             ToolbarItem {
-                Button("Done", action: Save)
+                Button("Done", action: { Task { await SaveAsync() }})
             }
         }
     }
-                    
-    private func Save() {
-        viewModel.edit(task: task)
+           
+    private func SaveAsync() async {
+        await viewModel.editAsync(task: task)
         navigationStack.removeAll()
     }
 }

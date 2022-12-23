@@ -16,9 +16,11 @@ internal class DeleteCommandHandler {
         self.context = context
     }
     
-    func Handle(task: TaskItem) {
+    func Handle(task: TaskItem) async {
         
-        context.delete(task)
-        context.saveChanges()
+        await context.perform {
+            self.context.delete(task)
+            self.context.saveChanges()
+        }
     }
 }

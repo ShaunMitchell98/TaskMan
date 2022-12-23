@@ -6,24 +6,30 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct ListView: View {
-    @State var tasks: [TaskItem]
+    @StateObject private var data: ListData = ListData()
     @State private var navigationStack: [Int] = []
-    @Injected var viewModel : ListViewModel
+    @Injected private var viewModel : ListViewModel
 
     var body: some View {
         
         NavigationStack(path: $navigationStack) {
             List {
-                ForEach(tasks.indices, id: \.self) { index in
-                    NavigationLink(tasks[index].name!, value: index)
+                ForEach(data.tasks.indices, id: \.self) { index in
+                    NavigationLink(data.tasks[index].name!, value: index)
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: { offsets in Task { await deleteItems(offsets: offsets, tasks: data.tasks)}})
+            }
+            .animation(.default, value: data.tasks)
+            .task {
+                data.tasks = await viewModel.listAsync()            
+            }
+            .refreshable {
+                data.tasks = await viewModel.listAsync()
             }
             .navigationDestination(for: Int.self) { index in
-                EditView(task: $tasks[index], navigationStack: $navigationStack)
+                EditView(task: data.tasks[index], navigationStack: $navigationStack)
             }
             .toolbar {
 #if os(iOS)
@@ -32,7 +38,7 @@ struct ListView: View {
                 }
 #endif
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button(action: { Task { await addItem()}}) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
@@ -40,24 +46,25 @@ struct ListView: View {
         }
     }
 
-    private func addItem() {
+    private func addItem() async {
+        
+        let task = await viewModel.createAsync(count: data.tasks.count)
+        
         withAnimation {
-            let task = viewModel.create(count: tasks.count)
-            
             if task != nil {
-                tasks.append(task!)
+                data.tasks.append(task!)
             }
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteItems(offsets: IndexSet, tasks: [TaskItem]) async {
+        
+        for offset in offsets {
+            await viewModel.deleteAsync(task: tasks[offset])
+        }
+        
         withAnimation {
-            
-            for offset in offsets {
-                viewModel.delete(task: tasks[offset])
-            }
-            
-            tasks.remove(atOffsets: offsets)
+            data.tasks.remove(atOffsets: offsets)
         }
     }
 }
