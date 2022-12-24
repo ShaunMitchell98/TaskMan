@@ -169,7 +169,6 @@
 				6D2907DA2916848600B5432C /* TaskMan */,
 				6D044FDA2919B62A0059C32B /* TaskMan.Models */,
 				6D2907FB2916848800B5432C /* TaskManUITests */,
-				6D6D81212957628100E1FD6E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -238,13 +237,6 @@
 				6D4A929B29573BA200537DD4 /* TaskMan.xctestplan */,
 			);
 			path = TaskMan.IntegrationTests;
-			sourceTree = "<group>";
-		};
-		6D6D81212957628100E1FD6E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		6D76195F291811DB008C354C /* Tasks */ = {
