@@ -7,16 +7,16 @@
 
 import Foundation
 
-internal class EditHandler {
+public class EditHandler {
     
     let context : TaskManContext;
     
-    internal init(context : TaskManContext)
+    public init(context : TaskManContext)
     {
         self.context = context;
     }
     
-    internal func Handle(request: TaskItem) async {
+    public func Handle(request: TaskItem) async {
         
         await context.perform {
             self.context.saveChanges()
