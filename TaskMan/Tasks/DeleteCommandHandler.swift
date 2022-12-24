@@ -8,15 +8,15 @@
 import CoreData
 import Foundation
 
-internal class DeleteCommandHandler {
+public class DeleteCommandHandler {
     
     private let context: TaskManContext
     
-    internal init(context: TaskManContext) {
+    public init(context: TaskManContext) {
         self.context = context
     }
     
-    func Handle(task: TaskItem) async {
+    public func Handle(task: TaskItem) async {
         
         await context.perform {
             self.context.delete(task)

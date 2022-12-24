@@ -8,16 +8,16 @@
 import CoreData
 import Foundation
 
-internal class ListQueryHandler {
+public class ListQueryHandler {
     
     private let context : TaskManContext;
     
-    internal init(context : TaskManContext)
+    public init(context : TaskManContext)
     {
         self.context = context;
     }
     
-    internal func Handle(request: ListQuery) async -> [TaskItem] {
+    public func Handle(request: ListQuery) async -> [TaskItem] {
             
         return await context.perform {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskItem")

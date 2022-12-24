@@ -12,7 +12,7 @@ import TaskMan
 final class CreateModelHandlerTests : IntegrationTest {
     
     func test_GivenTask_SavesTask() async {
-        
+                
         let model = CreateModel(index: 5)
         
         let handler: CreateModelHandler = getService();

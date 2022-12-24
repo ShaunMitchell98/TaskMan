@@ -10,7 +10,7 @@ import Foundation
 
 public class TaskManContext : NSManagedObjectContext {
     
-    func saveChanges() {
+    public func saveChanges() {
         
         do {
            try super.save()
@@ -20,13 +20,32 @@ public class TaskManContext : NSManagedObjectContext {
         }
     }
     
-    func fetchResults<T>(request: NSFetchRequest<T>) -> [T] where T : NSFetchRequestResult {
+    public func fetchResults<T>(request: NSFetchRequest<T>) -> [T] where T : NSFetchRequestResult {
         
         do {
             return try super.fetch(request)
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+    
+    public func deleteBackingFiles() {
+        
+        let databaseFolderPath = self.persistentStoreCoordinator?.persistentStores[0].url?.deletingLastPathComponent()
+        
+        if (databaseFolderPath == nil) {
+            return
+        }
+
+        let fileManager = FileManager.default
+       
+        if fileManager.fileExists(atPath: databaseFolderPath!.path) {
+            
+            let fileURLs = try? fileManager.contentsOfDirectory(at: databaseFolderPath!, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+            for url in fileURLs! {
+               try? fileManager.removeItem(at: url)
+            }
         }
     }
 }

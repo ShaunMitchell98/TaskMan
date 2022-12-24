@@ -7,4 +7,6 @@
 
 import Foundation
 
-internal class ListQuery {}
+public class ListQuery {
+    public init() {}
+}
