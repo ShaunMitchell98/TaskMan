@@ -21,6 +21,9 @@ public class ListQueryHandler {
             
         return await context.perform {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskItem")
+            let sort = NSSortDescriptor(key: "name", ascending: true)
+            fetchRequest.sortDescriptors = [sort]
+            
             let results = self.context.fetchResults(request: fetchRequest)
             return results as! [TaskItem]
         }
