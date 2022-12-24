@@ -10,7 +10,7 @@ import Swinject
 
 internal class AssemblerBuilder {
     
-    internal func Build() -> Assembler {
-        return Assembler([DataAccessAssembly(), TasksAssembly()])
+    internal func Build(configuration: NSDictionary) -> Assembler {
+        return Assembler([DataAccessAssembly(configuration: configuration), TasksAssembly()])
     }
 }

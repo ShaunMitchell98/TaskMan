@@ -11,6 +11,12 @@ import Swinject
 
 internal class DataAccessAssembly : Assembly {
     
+    private let configuration: NSDictionary
+    
+    init(configuration: NSDictionary) {
+        self.configuration = configuration
+    }
+    
     internal func assemble(container: Container) {
         
         container.register(TaskManContext.self) { r in
@@ -21,8 +27,9 @@ internal class DataAccessAssembly : Assembly {
             context.persistentStoreCoordinator = coordinator
             
             do {
+                let databasePath: String = self.configuration["TaskManDatabasePath"] as! String;
                 try _ = coordinator.addPersistentStore(type:.sqlite,
-                                               at:URL(fileURLWithPath: "/Users/shaunmitchell/TaskManData/Data.sqlite"))
+                                               at:URL(fileURLWithPath: databasePath))
             }
             catch {
                 let nsError = error as NSError

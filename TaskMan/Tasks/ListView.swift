@@ -73,7 +73,8 @@ struct ListView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         
-        let assembler = AssemblerBuilder().Build()
+        let configuration = ConfigurationProvider.getConfiguration()
+        let assembler = AssemblerBuilder().Build(configuration: configuration)
         assembler.resolver.resolve(ListView.self)
     }
 }
