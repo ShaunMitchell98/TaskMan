@@ -13,7 +13,7 @@ class AssemblerContainerBuilder {
         
         let configuration = ConfigurationProvider.getConfiguration()
         
-        let assembler = AssemblerBuilder().Build(configuration: configuration)
+        let assembler = AssemblerBuilder.Build(configuration: configuration)
         
         return AssemblerContainer(assembler: assembler)
     }

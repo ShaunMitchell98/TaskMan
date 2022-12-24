@@ -8,9 +8,9 @@
 import Foundation
 import Swinject
 
-internal class AssemblerBuilder {
+public class AssemblerBuilder {
     
-    internal func Build(configuration: NSDictionary) -> Assembler {
+    public static func Build(configuration: NSDictionary) -> Assembler {
         return Assembler([DataAccessAssembly(configuration: configuration), TasksAssembly()])
     }
 }

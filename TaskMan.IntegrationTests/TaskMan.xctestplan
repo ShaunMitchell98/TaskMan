@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "5F049B0E-AF3D-4D5F-91C9-A724B3BCD056",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:TaskMan.xcodeproj",
+        "identifier" : "6D4A929029573A6800537DD4",
+        "name" : "TaskMan.IntegrationTests"
+      }
+    }
+  ],
+  "version" : 1
+}

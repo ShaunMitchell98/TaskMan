@@ -7,9 +7,9 @@
 
 import Foundation
 
-internal class CreateModel {
+public class CreateModel {
     
-    init (index: Int) {
+    public init (index: Int) {
         self.index = index
     }
     

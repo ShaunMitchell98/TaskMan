@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-internal class CreateModelHandler {
+public class CreateModelHandler {
     
     let context : TaskManContext;
     
@@ -17,7 +17,7 @@ internal class CreateModelHandler {
         self.context = context;
     }
     
-    internal func Handle(request: CreateModel) async -> TaskItem? {
+    public func Handle(request: CreateModel) async -> TaskItem? {
         
         return await context.perform {
             let taskItem = NSEntityDescription.insertNewObject(forEntityName: "TaskItem", into: self.context) as! TaskItem

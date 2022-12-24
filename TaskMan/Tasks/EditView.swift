@@ -46,7 +46,7 @@ struct EditView_Previews: PreviewProvider {
     static var previews: some View {
         
         let configuration = ConfigurationProvider.getConfiguration()
-        let assembler = AssemblerBuilder().Build(configuration: configuration)
+        let assembler = AssemblerBuilder.Build(configuration: configuration)
         assembler.resolver.resolve(EditView.self)
     }
 }
