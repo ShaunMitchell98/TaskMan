@@ -18,6 +18,7 @@ final class ListQueryHandlerTests : IntegrationTest {
         task1.name = "Name1"
         
         let task2 = TaskItem(context: Context)
+        task2.dueDate = Date.now
         task2.name = "Name2"
         
         await insertAsync()
@@ -28,5 +29,6 @@ final class ListQueryHandlerTests : IntegrationTest {
         XCTAssertEqual(2, results.count)
         XCTAssertEqual(task1.name, results[0].name)
         XCTAssertEqual(task2.name, results[1].name)
+        XCTAssertEqual(task2.dueDate, results[1].dueDate)
     }
 }

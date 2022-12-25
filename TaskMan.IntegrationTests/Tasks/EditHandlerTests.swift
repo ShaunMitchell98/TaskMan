@@ -19,7 +19,9 @@ final class EditHandlerTests : IntegrationTest {
         await insertAsync()
         
         let newName = "New Name"
+        let newDate = Date.now
         task.name = newName
+        task.dueDate = newDate
         
         let handler: EditHandler = getService();
         await handler.Handle(request: task)
@@ -31,5 +33,6 @@ final class EditHandlerTests : IntegrationTest {
         
         
         XCTAssertEqual(newName, finalTask.name)
+        XCTAssertEqual(newDate, finalTask.dueDate)
     }
 }

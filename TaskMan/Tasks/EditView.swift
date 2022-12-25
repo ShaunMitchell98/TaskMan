@@ -9,7 +9,7 @@ import CoreData
 import SwiftUI
 
 struct EditView: View {
-    @State var task: TaskItem
+    @ObservedObject var task: TaskItem
     @Binding var navigationStack: [Int]
     @Injected var viewModel : EditViewModel
     @Environment(\.isPresented) var isPresented
@@ -21,6 +21,12 @@ struct EditView: View {
                 Text("Name").bold()
                 Divider()
                 TextField("Name", text: Binding($task.name) ?? .constant(""))
+            }
+            Toggle("Has Due Date",
+                   isOn: Binding(isNotNil: $task.dueDate, defaultValue: Date()))
+            if task.dueDate != nil {
+                DatePicker("Due Date", selection: Binding($task.dueDate)!,
+                                   displayedComponents: .date)
             }
         }
         .onChange(of: isPresented) { newValue in
