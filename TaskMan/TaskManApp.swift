@@ -15,7 +15,7 @@ struct TaskManApp: App {
     var body: some Scene {
         WindowGroup {
             
-            ListView()
+            Tasks.ListView()
                 .environment(\.assemblerContainer, AssemblerContainerBuilder.Build())
         }
     }

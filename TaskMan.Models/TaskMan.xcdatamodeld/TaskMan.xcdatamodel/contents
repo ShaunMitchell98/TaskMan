@@ -3,5 +3,9 @@
     <entity name="TaskItem" representedClassName="TaskItem" syncable="YES" codeGenerationType="class">
         <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskList"/>
+    </entity>
+    <entity name="TaskList" representedClassName="TaskList" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
 </model>

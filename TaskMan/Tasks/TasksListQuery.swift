@@ -7,6 +7,9 @@
 
 import Foundation
 
-public class ListQuery {
-    public init() {}
+extension Tasks {
+    public class ListQuery {
+        public init() {}
+    }
 }
+

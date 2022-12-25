@@ -9,21 +9,24 @@ import Foundation
 import Swinject
 import SwinjectAutoregistration
 
-internal class TasksAssembly : Assembly {
-    
-    internal func assemble(container: Container) {
-        container.autoregister(CreateModelHandler.self, initializer: CreateModelHandler.init)
+extension Tasks {
+    internal class TasksAssembly : Assembly {
         
-        container.autoregister(DeleteCommandHandler.self, initializer: DeleteCommandHandler.init)
-        
-        container.autoregister(ListQueryHandler.self, initializer: ListQueryHandler.init)
-        
-        container.autoregister(ListViewModel.self, initializer: ListViewModel.init)
-        
-        container.autoregister(EditViewModel.self, initializer: EditViewModel.init)
-        
-        container.autoregister(EditHandler.self, initializer: EditHandler.init)
-        
-        container.autoregister(UndoHandler.self, initializer: UndoHandler.init)
+        internal func assemble(container: Container) {
+            container.autoregister(CreateModelHandler.self, initializer: CreateModelHandler.init)
+            
+            container.autoregister(DeleteCommandHandler.self, initializer: DeleteCommandHandler.init)
+            
+            container.autoregister(ListQueryHandler.self, initializer: ListQueryHandler.init)
+            
+            container.autoregister(ListViewModel.self, initializer: ListViewModel.init)
+            
+            container.autoregister(EditViewModel.self, initializer: EditViewModel.init)
+            
+            container.autoregister(EditHandler.self, initializer: EditHandler.init)
+            
+            container.autoregister(UndoHandler.self, initializer: UndoHandler.init)
+        }
     }
 }
+
