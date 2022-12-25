@@ -6,6 +6,7 @@
         <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskList"/>
     </entity>
     <entity name="TaskList" representedClassName="TaskList" syncable="YES" codeGenerationType="class">
+        <attribute name="isDefault" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
 </model>

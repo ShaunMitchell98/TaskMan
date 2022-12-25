@@ -16,6 +16,10 @@ extension Lists {
             container.autoregister(PickerViewModel.self, initializer: PickerViewModel.init)
             
             container.autoregister(ListQueryHandler.self, initializer: ListQueryHandler.init)
+            
+            container.autoregister(ListViewModel.self, initializer: ListViewModel.init)
+            
+            container.autoregister(CreateModelHandler.self, initializer: CreateModelHandler.init)
         }
     }
 }

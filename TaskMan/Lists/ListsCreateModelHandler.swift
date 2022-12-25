@@ -24,6 +24,7 @@ extension Lists {
                 let taskList = NSEntityDescription.insertNewObject(forEntityName: "TaskList", into: self.context) as! TaskList
                 
                 taskList.name = "Temp \(request.index)"
+                taskList.isDefault = false
                 self.context.saveChanges()
                 return taskList
             }

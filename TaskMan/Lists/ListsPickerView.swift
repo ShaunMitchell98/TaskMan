@@ -12,15 +12,15 @@ import SwiftUI
 extension Lists {
     struct PickerView: View {
         
-        @State var selectedList: NSManagedObjectID?
+        @Binding var selectedList: TaskList?
         @State var lists: [TaskList] = []
         @Injected private var viewModel : PickerViewModel
         
         var body: some View {
             
-            Picker("List", selection: $selectedList) {
+            Picker("List", selection: Binding($selectedList)!.name) {
                 ForEach(lists) { list in
-                    Text(list.name!).tag(list.objectID)
+                    Text(list.name!).tag(list.name)
                 }
             }
             .task {
@@ -38,7 +38,3 @@ extension Lists {
         }
     }
 }
-
-
-
-

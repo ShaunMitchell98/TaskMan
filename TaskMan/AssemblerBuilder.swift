@@ -13,7 +13,7 @@ public class AssemblerBuilder {
     public static func Build(configuration: NSDictionary) -> Assembler {
         return Assembler(
             [
-                DataAccessAssembly(configuration: configuration),
+                Database.DataAccessAssembly(configuration: configuration),
                 Tasks.TasksAssembly(),
                 Lists.ListsAssembly()
             ])

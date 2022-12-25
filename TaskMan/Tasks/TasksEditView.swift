@@ -29,7 +29,7 @@ extension Tasks {
                     DatePicker("Due Date", selection: Binding($task.dueDate)!,
                                        displayedComponents: .date)
                 }
-                Lists.PickerView(selectedList: task.list?.objectID)
+                Lists.PickerView(selectedList: $task.list)
             }
             .onChange(of: isPresented) { newValue in
                         if !newValue {
