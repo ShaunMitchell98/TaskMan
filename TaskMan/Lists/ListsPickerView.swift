@@ -12,15 +12,15 @@ import SwiftUI
 extension Lists {
     struct PickerView: View {
         
-        @Binding var selectedList: TaskList?
+        @ObservedObject var task: TaskItem
         @State var lists: [TaskList] = []
         @Injected private var viewModel : PickerViewModel
         
         var body: some View {
             
-            Picker("List", selection: Binding($selectedList)!.name) {
-                ForEach(lists) { list in
-                    Text(list.name!).tag(list.name)
+            Picker("List", selection: $task.list) {
+                ForEach(lists, id: \.self) { list in
+                    Text("\(list.name!)").tag(list as TaskList?)
                 }
             }
             .task {
