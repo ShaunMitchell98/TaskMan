@@ -9,6 +9,7 @@ import SwiftUI
 
 extension Lists {
     struct ListView: View {
+        @State private var editMode: EditMode = .inactive // Hack because of SwiftUI bug, see https://medium.com/geekculture/swiftui-and-the-intermittent-editmode-b714c923f536
         @StateObject private var data: ListData = ListData()
         @StateObject private var navigationModel: Navigation.NavigationModel = Navigation.NavigationModel()
         @Injected private var viewModel : ListViewModel
@@ -16,11 +17,18 @@ extension Lists {
         var body: some View {
             
             NavigationStack(path: $navigationModel.path) {
-                NavigationView(data: data, navigationModel: navigationModel, viewModel: viewModel)
-                .animation(.default, value: data.items)
-                .refreshable {
-                    data.items = await viewModel.listAsync()
+                
+                Group {
+                    if (editMode.isEditing == true) {
+                        EditListView(data: data, viewModel: viewModel)
+                    }
+                    else {
+                        NavigationView(data: data, navigationModel: navigationModel, viewModel: viewModel)
+                    }
                 }
+
+                .animation(.default, value: data.items)
+
                 .navigationTitle("Lists")
                 .toolbar {
     #if os(iOS)
@@ -34,6 +42,7 @@ extension Lists {
                         }
                     }
                 }
+                .environment(\.editMode, $editMode)
             }
         }
 
@@ -48,15 +57,4 @@ extension Lists {
             }
         }
     }
-
-    struct ListView_Previews: PreviewProvider {
-        static var previews: some View {
-            
-            let configuration = ConfigurationProvider.getConfiguration()
-            let assembler = AssemblerBuilder.Build(configuration: configuration)
-            assembler.resolver.resolve(ListView.self)
-        }
-    }
 }
-
-
