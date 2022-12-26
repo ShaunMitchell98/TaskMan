@@ -10,15 +10,15 @@ import SwiftUI
 extension Lists {
     struct ListView: View {
         @StateObject private var data: ListData = ListData()
-        @State private var navigationStack: [Int] = []
+        @State private var path: NavigationPath = NavigationPath()
         @Injected private var viewModel : ListViewModel
 
         var body: some View {
             
-            NavigationStack(path: $navigationStack) {
+            NavigationStack(path: $path) {
                 List {
-                    ForEach(data.items.indices, id: \.self) { index in
-                        NavigationLink(data.items[index].name!, value: index)
+                    ForEach(data.items) { list in
+                        NavigationLink(list.name!, value: list)
                     }
                     .onDelete(perform: { offsets in Task { await deleteItems(offsets: offsets, lists: data.items)}})
                 }
@@ -28,6 +28,9 @@ extension Lists {
                 }
                 .refreshable {
                     data.items = await viewModel.listAsync()
+                }
+                .navigationDestination(for: TaskList.self) { list in
+                    Tasks.ListView(path: $path)
                 }
                 .toolbar {
     #if os(iOS)

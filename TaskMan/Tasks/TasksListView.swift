@@ -10,38 +10,36 @@ import SwiftUI
 extension Tasks {
     struct ListView: View {
         @StateObject private var data: ListData = ListData()
-        @State private var navigationStack: [Int] = []
+        @Binding var path: NavigationPath
         @Injected private var viewModel : ListViewModel
 
         var body: some View {
             
-            NavigationStack(path: $navigationStack) {
-                List {
-                    ForEach(data.tasks.indices, id: \.self) { index in
-                        NavigationLink(data.tasks[index].name!, value: index)
-                    }
-                    .onDelete(perform: { offsets in Task { await deleteItems(offsets: offsets, tasks: data.tasks)}})
+            List {
+                ForEach(data.tasks) { task in
+                    NavigationLink(task.name!, value: task)
                 }
-                .animation(.default, value: data.tasks)
-                .task {
-                    data.tasks = await viewModel.listAsync()
+                .onDelete(perform: { offsets in Task { await deleteItems(offsets: offsets, tasks: data.tasks)}})
+            }
+            .animation(.default, value: data.tasks)
+            .task {
+                data.tasks = await viewModel.listAsync()
+            }
+            .refreshable {
+                data.tasks = await viewModel.listAsync()
+            }
+            .navigationDestination(for: TaskItem.self) { task in
+                EditView(task: task, path: $path)
+            }
+            .toolbar {
+#if os(iOS)
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
                 }
-                .refreshable {
-                    data.tasks = await viewModel.listAsync()
-                }
-                .navigationDestination(for: Int.self) { index in
-                    EditView(task: data.tasks[index], navigationStack: $navigationStack)
-                }
-                .toolbar {
-    #if os(iOS)
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
-                    }
-    #endif
-                    ToolbarItem {
-                        Button(action: { Task { await addItem()}}) {
-                            Label("Add Item", systemImage: "plus")
-                        }
+#endif
+                ToolbarItem {
+                    Button(action: { Task { await addItem()}}) {
+                        Label("Add Item", systemImage: "plus")
                     }
                 }
             }
