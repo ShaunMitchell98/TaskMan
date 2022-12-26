@@ -16,21 +16,10 @@ extension Lists {
         var body: some View {
             
             NavigationStack(path: $navigationModel.path) {
-                List {
-                    ForEach(data.items) { list in
-                        NavigationLink(list.name!, value: list)
-                    }
-                    .onDelete(perform: { offsets in Task { await deleteItems(offsets: offsets, lists: data.items)}})
-                }
+                NavigationView(data: data, navigationModel: navigationModel, viewModel: viewModel)
                 .animation(.default, value: data.items)
-                .task {
-                    data.items = await viewModel.listAsync()
-                }
                 .refreshable {
                     data.items = await viewModel.listAsync()
-                }
-                .navigationDestination(for: TaskList.self) { list in
-                    Tasks.ListView(listName: list.name!, navigationModel: navigationModel)
                 }
                 .navigationTitle("Lists")
                 .toolbar {
@@ -58,19 +47,7 @@ extension Lists {
                 }
             }
         }
-        
-        private func deleteItems(offsets: IndexSet, lists: [TaskList]) async {
-            
-            for offset in offsets {
-                await viewModel.deleteAsync(list: lists[offset])
-            }
-            
-            withAnimation {
-                data.items.remove(atOffsets: offsets)
-            }
-        }
     }
-
 
     struct ListView_Previews: PreviewProvider {
         static var previews: some View {
