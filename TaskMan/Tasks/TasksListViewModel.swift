@@ -23,8 +23,8 @@ extension Tasks {
             self.deleteCommandHandler = deleteCommandHandler
         }
         
-        func listAsync() async -> [TaskItem] {
-            return await listQueryHandler.Handle(request: ListQuery())
+        func listAsync(listName: String) async -> [TaskItem] {
+            return await listQueryHandler.Handle(request: ListQuery(listName: listName))
         }
         
         func createAsync(count: Int) async -> TaskItem?  {

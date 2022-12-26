@@ -5,10 +5,12 @@
 //  Created by Shaun Mitchell on 05/11/2022.
 //
 
+import CoreData
 import SwiftUI
 
 extension Tasks {
     struct ListView: View {
+        var listName: String
         @StateObject private var data: ListData = ListData()
         @ObservedObject var navigationModel: Navigation.NavigationModel
         @Injected private var viewModel : ListViewModel
@@ -23,15 +25,15 @@ extension Tasks {
             }
             .animation(.default, value: data.tasks)
             .task {
-                data.tasks = await viewModel.listAsync()
+                data.tasks = await viewModel.listAsync(listName: listName)
             }
             .refreshable {
-                data.tasks = await viewModel.listAsync()
+                data.tasks = await viewModel.listAsync(listName: listName)
             }
             .navigationDestination(for: TaskItem.self) { task in
                 EditView(task: task, navigationModel: navigationModel)
             }
-            .navigationTitle("Tasks")
+            .navigationTitle(listName)
             .toolbar {
 #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {

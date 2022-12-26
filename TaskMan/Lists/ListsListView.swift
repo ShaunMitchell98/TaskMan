@@ -30,7 +30,7 @@ extension Lists {
                     data.items = await viewModel.listAsync()
                 }
                 .navigationDestination(for: TaskList.self) { list in
-                    Tasks.ListView(navigationModel: navigationModel)
+                    Tasks.ListView(listName: list.name!, navigationModel: navigationModel)
                 }
                 .navigationTitle("Lists")
                 .toolbar {

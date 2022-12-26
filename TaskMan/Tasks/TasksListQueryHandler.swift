@@ -24,6 +24,7 @@ extension Tasks {
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskItem")
                 let sort = NSSortDescriptor(key: "name", ascending: true)
                 fetchRequest.sortDescriptors = [sort]
+                fetchRequest.predicate = NSPredicate(format: "list.name = %@", request.ListName)
                 
                 let results = self.context.fetchResults(request: fetchRequest)
                 return results as! [TaskItem]
