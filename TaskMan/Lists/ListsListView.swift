@@ -10,12 +10,12 @@ import SwiftUI
 extension Lists {
     struct ListView: View {
         @StateObject private var data: ListData = ListData()
-        @State private var path: NavigationPath = NavigationPath()
+        @StateObject private var navigationModel: Navigation.NavigationModel = Navigation.NavigationModel()
         @Injected private var viewModel : ListViewModel
 
         var body: some View {
             
-            NavigationStack(path: $path) {
+            NavigationStack(path: $navigationModel.path) {
                 List {
                     ForEach(data.items) { list in
                         NavigationLink(list.name!, value: list)
@@ -30,7 +30,7 @@ extension Lists {
                     data.items = await viewModel.listAsync()
                 }
                 .navigationDestination(for: TaskList.self) { list in
-                    Tasks.ListView(path: $path)
+                    Tasks.ListView(navigationModel: navigationModel)
                 }
                 .toolbar {
     #if os(iOS)

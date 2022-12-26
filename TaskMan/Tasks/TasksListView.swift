@@ -10,7 +10,7 @@ import SwiftUI
 extension Tasks {
     struct ListView: View {
         @StateObject private var data: ListData = ListData()
-        @Binding var path: NavigationPath
+        @ObservedObject var navigationModel: Navigation.NavigationModel
         @Injected private var viewModel : ListViewModel
 
         var body: some View {
@@ -29,7 +29,7 @@ extension Tasks {
                 data.tasks = await viewModel.listAsync()
             }
             .navigationDestination(for: TaskItem.self) { task in
-                EditView(task: task, path: $path)
+                EditView(task: task, navigationModel: navigationModel)
             }
             .toolbar {
 #if os(iOS)

@@ -11,7 +11,7 @@ import SwiftUI
 extension Tasks {
     struct EditView: View {
         @ObservedObject var task: TaskItem
-        @Binding var path: NavigationPath
+        @ObservedObject var navigationModel: Navigation.NavigationModel
         @Injected var viewModel : EditViewModel
         @Environment(\.isPresented) var isPresented
         
@@ -46,7 +46,7 @@ extension Tasks {
                
         private func SaveAsync() async {
             await viewModel.editAsync(task: task)
-            path.removeLast()
+            navigationModel.path.removeLast()
         }
     }
 
