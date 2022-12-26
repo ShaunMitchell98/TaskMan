@@ -12,6 +12,7 @@ extension Lists {
     
     struct EditListView : View {
         
+        @State private var showSheet: Bool = false
         @ObservedObject var data: ListData
         var viewModel : ListViewModel
         
@@ -23,7 +24,13 @@ extension Lists {
                     Spacer()
                     Image(systemName: "info.circle")
                         .symbolRenderingMode(.multicolor)
+                        .onTapGesture {
+                            showSheet = true
+                        }
                 }
+            }
+            .sheet(isPresented: $showSheet) {
+                EditModalView(isPresented: $showSheet)
             }
             .task {
                 data.items = await viewModel.listAsync()
