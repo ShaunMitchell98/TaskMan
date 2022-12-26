@@ -27,8 +27,8 @@ extension Tasks {
             return await listQueryHandler.Handle(request: ListQuery(listName: listName))
         }
         
-        func createAsync(count: Int) async -> TaskItem?  {
-            let model = CreateModel(index: count + 1)
+        func createAsync(count: Int, listName: String) async -> TaskItem?  {
+            let model = CreateModel(index: count + 1, listName: listName)
             let task = await createModelHandler.Handle(request: model)
             
             return task

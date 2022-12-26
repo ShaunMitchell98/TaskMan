@@ -50,7 +50,7 @@ extension Tasks {
 
         private func addItem() async {
             
-            let task = await viewModel.createAsync(count: data.tasks.count)
+            let task = await viewModel.createAsync(count: data.tasks.count, listName: listName)
             
             withAnimation {
                 if task != nil {

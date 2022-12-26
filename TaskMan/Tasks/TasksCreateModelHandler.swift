@@ -23,13 +23,13 @@ extension Tasks {
             return await context.perform {
                 let taskItem = NSEntityDescription.insertNewObject(forEntityName: "TaskItem", into: self.context) as! TaskItem
                 
-                let defaultListFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskList")
-                defaultListFetchRequest.predicate = NSPredicate(format: "isDefault = true")
+                let listFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TaskList")
+                listFetchRequest.predicate = NSPredicate(format: "name = %@", request.listName)
                 
-                let defaultList = self.context.fetchResults(request: defaultListFetchRequest)[0] as! TaskList
+                let list = self.context.fetchResults(request: listFetchRequest)[0] as! TaskList
                 
                 taskItem.name = "Temp \(request.index)"
-                taskItem.list = defaultList
+                taskItem.list = list
                 self.context.saveChanges()
                 return taskItem
             }

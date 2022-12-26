@@ -10,10 +10,13 @@ import Foundation
 extension Tasks {
     internal class CreateModel {
         
-        internal init (index: Int) {
+        internal init (index: Int, listName: String) {
             self.index = index
+            self.listName = listName
         }
         
         let index: Int
+        
+        let listName: String
     }
 }
