@@ -32,6 +32,7 @@ extension Lists {
                 .navigationDestination(for: TaskList.self) { list in
                     Tasks.ListView(navigationModel: navigationModel)
                 }
+                .navigationTitle("Lists")
                 .toolbar {
     #if os(iOS)
                     ToolbarItem(placement: .navigationBarTrailing) {

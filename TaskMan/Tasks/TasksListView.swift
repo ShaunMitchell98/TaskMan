@@ -31,6 +31,7 @@ extension Tasks {
             .navigationDestination(for: TaskItem.self) { task in
                 EditView(task: task, navigationModel: navigationModel)
             }
+            .navigationTitle("Tasks")
             .toolbar {
 #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
