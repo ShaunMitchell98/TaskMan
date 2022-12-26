@@ -8,12 +8,12 @@
 import Foundation
 
 extension Lists {
-    internal class CreateModel {
+    public class CreateModel {
         
-        internal init (index: Int) {
+        public init (index: Int) {
             self.index = index
         }
         
-        let index: Int
+        public let index: Int
     }
 }
