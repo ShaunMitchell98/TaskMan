@@ -11,6 +11,11 @@ import Swinject
 public class AssemblerBuilder {
     
     public static func Build(configuration: NSDictionary) -> Assembler {
-        return Assembler([DataAccessAssembly(configuration: configuration), TasksAssembly()])
+        return Assembler(
+            [
+                Database.DataAccessAssembly(configuration: configuration),
+                Tasks.TasksAssembly(),
+                Lists.ListsAssembly()
+            ])
     }
 }
