@@ -54,6 +54,8 @@
 		6DAB89A92958FA7600134526 /* ListsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAB89A82958FA7600134526 /* ListsListView.swift */; };
 		6DC530232959134D009A8DCB /* DatabaseInitialiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC530222959134D009A8DCB /* DatabaseInitialiser.swift */; };
 		6DC53025295913A0009A8DCB /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC53024295913A0009A8DCB /* Database.swift */; };
+		6DC5302729591B0A009A8DCB /* ListsDeleteCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC5302629591B0A009A8DCB /* ListsDeleteCommand.swift */; };
+		6DC5302929591B26009A8DCB /* ListsDeleteCommandHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC5302829591B26009A8DCB /* ListsDeleteCommandHandler.swift */; };
 		6DC5602929201D5000F14C5E /* Injected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC5602829201D5000F14C5E /* Injected.swift */; };
 		6DC890482935773B00696EE4 /* AssemblerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC890472935773B00696EE4 /* AssemblerContainer.swift */; };
 		6DCBADE129570E3A00D53C69 /* AssemblerContainerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBADE029570E3A00D53C69 /* AssemblerContainerBuilder.swift */; };
@@ -142,6 +144,8 @@
 		6DAB89A82958FA7600134526 /* ListsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsListView.swift; sourceTree = "<group>"; };
 		6DC530222959134D009A8DCB /* DatabaseInitialiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseInitialiser.swift; sourceTree = "<group>"; };
 		6DC53024295913A0009A8DCB /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		6DC5302629591B0A009A8DCB /* ListsDeleteCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsDeleteCommand.swift; sourceTree = "<group>"; };
+		6DC5302829591B26009A8DCB /* ListsDeleteCommandHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsDeleteCommandHandler.swift; sourceTree = "<group>"; };
 		6DC5602829201D5000F14C5E /* Injected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injected.swift; sourceTree = "<group>"; };
 		6DC890472935773B00696EE4 /* AssemblerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblerContainer.swift; sourceTree = "<group>"; };
 		6DCBADE029570E3A00D53C69 /* AssemblerContainerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblerContainerBuilder.swift; sourceTree = "<group>"; };
@@ -321,6 +325,8 @@
 				6DAB89A02958F1EB00134526 /* ListsPickerViewModel.swift */,
 				6D49CD3B29590795000CB39C /* ListsCreateModel.swift */,
 				6D49CD3D29590875000CB39C /* ListsAssembly.swift */,
+				6DC5302629591B0A009A8DCB /* ListsDeleteCommand.swift */,
+				6DC5302829591B26009A8DCB /* ListsDeleteCommandHandler.swift */,
 			);
 			path = Lists;
 			sourceTree = "<group>";
@@ -496,6 +502,7 @@
 				6D044FE92919CF290059C32B /* TasksDeleteCommandHandler.swift in Sources */,
 				6D742185291DB74B001F8A1C /* TasksAssembly.swift in Sources */,
 				6D044FE72919CA0C0059C32B /* TasksListViewModel.swift in Sources */,
+				6DC5302929591B26009A8DCB /* ListsDeleteCommandHandler.swift in Sources */,
 				6D74218E291DC0DB001F8A1C /* TaskManContext.swift in Sources */,
 				6DC530232959134D009A8DCB /* DatabaseInitialiser.swift in Sources */,
 				6D7C4CAB291C626300F7D664 /* TasksDeleteCommand.swift in Sources */,
@@ -525,6 +532,7 @@
 				6D85007F2958FD6700328909 /* ListsListData.swift in Sources */,
 				6DC53025295913A0009A8DCB /* Database.swift in Sources */,
 				6D8500812958FD9700328909 /* ListsListViewModel.swift in Sources */,
+				6DC5302729591B0A009A8DCB /* ListsDeleteCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

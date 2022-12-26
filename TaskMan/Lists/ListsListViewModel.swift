@@ -12,12 +12,15 @@ extension Lists {
             
         private let listQueryHandler: ListQueryHandler
         private let createModelHandler: CreateModelHandler
+        private let deleteCommandHandler: DeleteCommandHandler
         
         init(listQueryHandler: ListQueryHandler,
-             createModelHandler: CreateModelHandler) {
+             createModelHandler: CreateModelHandler,
+             deleteCommandHandler: DeleteCommandHandler) {
             
             self.listQueryHandler = listQueryHandler
             self.createModelHandler = createModelHandler
+            self.deleteCommandHandler = deleteCommandHandler
         }
         
         func listAsync() async -> [TaskList] {
@@ -27,6 +30,11 @@ extension Lists {
         func createAsync(count: Int) async -> TaskList?  {
 
             return await createModelHandler.Handle(request: CreateModel(index: count + 1))
+        }
+        
+        func deleteAsync(list: TaskList) async {
+            
+            await deleteCommandHandler.Handle(list: list)
         }
     }
 }

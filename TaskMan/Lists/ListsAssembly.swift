@@ -20,6 +20,8 @@ extension Lists {
             container.autoregister(ListViewModel.self, initializer: ListViewModel.init)
             
             container.autoregister(CreateModelHandler.self, initializer: CreateModelHandler.init)
+            
+            container.autoregister(DeleteCommandHandler.self, initializer: DeleteCommandHandler.init)
         }
     }
 }
