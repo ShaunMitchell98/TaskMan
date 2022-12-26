@@ -9,13 +9,13 @@ import CoreData
 import Foundation
 
 extension Tasks {
-    internal class DeleteCommand {
+    public class DeleteCommand {
         
-        init (id: NSManagedObjectID) {
+        public init (id: NSManagedObjectID) {
             self.id  = id
         }
         
-        let id: NSManagedObjectID
+        public let id: NSManagedObjectID
     }
 }
 

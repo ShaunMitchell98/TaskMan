@@ -8,15 +8,15 @@
 import Foundation
 
 extension Tasks {
-    internal class CreateModel {
+    public class CreateModel {
         
-        internal init (index: Int, listName: String) {
+        public init (index: Int, listName: String) {
             self.index = index
             self.listName = listName
         }
         
-        let index: Int
+        public let index: Int
         
-        let listName: String
+        public let listName: String
     }
 }
